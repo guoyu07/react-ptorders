@@ -1,0 +1,1 @@
+a,body,button,h2,h3,input,li,p,select,textarea,ul{padding:0;margin:0;list-style:none;text-decoration:none;border:none}a:focus,body:focus,button:focus,h2:focus,h3:focus,input:focus,li:focus,p:focus,select:focus,textarea:focus,ul:focus{outline:none}img{max-width:100%;max-height:100%}.clear:after{content:'';display:block;clear:both}.clear{zoom:1}.head-list li{float:left}
