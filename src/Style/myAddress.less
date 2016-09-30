@@ -1,19 +1,26 @@
+.myAddress{
+	margin-bottom: 3rem;
+}
+
 .address_list{
 	margin-top: 2.7rem;
 	.address_item{
 		background-color: #fff;
 		margin-bottom: 0.5rem;
 		.address_detail{
+			display: block;
+			color: #333;
 			padding:0 0.75rem 0 0.75rem;
 			border-bottom: 0.025rem solid #ebebeb;
 			.name_phone{
-				color: #333;
 				padding-top: 1.0rem;
 				margin-bottom: 0.675rem;
 				.name{
+					color:#333;
 					font-size: 0.8rem;
 				}
 				.phone{
+					color:#333;
 					font-size: 0.7rem;
 					float: right;
 				}
@@ -25,7 +32,7 @@
 			}
 		}
 		.address_edit{
-			padding: 0.45rem 0.75rem 0.5rem 0.75rem;
+			padding: 0.4rem 0.75rem 0.4rem 0.75rem;
 			.address_set{
 				font-size: 0;
 				span{
@@ -35,7 +42,16 @@
 				.address_icon{
 					width: 1.05rem;
 					height: 1.05rem;
+					border-radius: 50%;
 					background: url(../images/icon_sel@3x.png) no-repeat;
+					background-size: 100% 100%;
+					margin-right: 0.5rem;
+				}
+				.address_icon1{
+					width: 1.05rem;
+					height: 1.05rem;
+					border-radius: 50%;
+					background: url(../images/icon_nor@3x.png) no-repeat;
 					background-size: 100% 100%;
 					margin-right: 0.5rem;
 				}
@@ -43,9 +59,13 @@
 					font-size: 0.6rem;
 					color: #985ec9;
 				}
+				.address_state1{
+					font-size: 0.6rem;
+					color: #333;
+				}
 			}
 			.edit_address{
-				span{
+				.editLink,.deleteIcon{
 					display: inline-block;
 					font-size: 0.6rem;
 					color: #333;
@@ -53,12 +73,12 @@
 					height: 0.825rem;
 					line-height: 0.825rem;
 				}
-				span:nth-of-type(1){
+				.editLink{
 					margin-right: 1.25rem;
 					background: url(../images/icon_--edit@3x.png) no-repeat;
 					background-size: 0.8rem 0.825rem;
 				}
-				span:nth-of-type(2){
+				.deleteIcon{
 					background: url(../images/icon_delete@3x.png) no-repeat;
 					background-size: 0.8rem 0.825rem;
 				}
@@ -86,5 +106,22 @@
 		background: url(../images/icon_fenxiaoshang@3x.png) no-repeat;
 		background-size: 100% 100% ;
 		margin-right: 0.5rem;
+		margin-top: -0.125rem;
+	}
+}
+.empty_address{
+	padding-top: 8rem;
+	.empty_img{
+		height: 5.85rem;
+		width: 5.85rem;
+		margin:0 auto;
+		background: url(../images/img_address@3x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.empty_title{
+		font-size: 0.7rem;
+		color: #999;
+		text-align: center;
+		margin-top: 0.65rem;
 	}
 }

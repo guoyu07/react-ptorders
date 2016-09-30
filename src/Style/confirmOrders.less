@@ -1,3 +1,7 @@
+
+.comfirmOrder_container{
+	padding-bottom: 3rem;
+}
 .order_address{
 	margin-top: 2.45rem;
 	margin-bottom: 0.5rem;
@@ -9,6 +13,12 @@
 	background-color: #fff;
 	.my_name{
 		line-height: 1.2rem;
+		span{
+			color: #333;
+		}
+		.order_phone{
+			color: #333;
+		}
 	}
 	.address_detail{
 		line-height: 0.95rem;
@@ -23,7 +33,7 @@
 	background-color: #fff;
 	border-bottom: 0.05rem solid #ebebeb;
 }
-.order_list{
+.confirm_order_list{
 	background-color:#fff;
 	.item_left{
 		left: 1.0rem;
@@ -60,9 +70,10 @@
 			font-size: 0.65rem;
 			margin-right:1.0rem;
 		}
-		span:nth-of-type(2){
+		.choosed{
 			width: 1.05rem;
 			height: 1.05rem;
+			border-radius: 50%;
 			background:url(../images/icon_sel@3x.png) no-repeat;
 			background-size: 100% 100%;
 			margin-right: 0.75rem;
@@ -71,10 +82,11 @@
 			font-size: 0.7rem;
 			margin-right: 1.5rem;
 		}
-		span:nth-of-type(4){
+		.notChoosed{
 			width: 1.05rem;
 			height: 1.05rem;
-			background:url(../images/icon_sel@3x.png) no-repeat;
+			border-radius: 50%;
+			background:url(../images/icon_nor@3x.png) no-repeat;
 			background-size: 100% 100%;
 			margin-right: 0.75rem;
 		}

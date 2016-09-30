@@ -3,7 +3,7 @@ import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { connect } from 'react-redux';
 import action from '../../Action/Index';
 import {Tool, merged} from '../../Tool';
-import {DataLoad, Footer, UserHeadImg, TabIcon} from './index';
+import {DataLoad, Footer} from './index';
 
 
 /**
@@ -13,7 +13,7 @@ import {DataLoad, Footer, UserHeadImg, TabIcon} from './index';
  * @returns
  */
 const Main = (mySeting) => {
-    var seting = {
+    let seting = {
         id: '', //应用唯一id表示
         type: 'GET', //请求类型
         url: '', //请求地址
@@ -23,7 +23,6 @@ const Main = (mySeting) => {
         success: (state) => { return state; }, //请求成功后执行的方法
         error: (state) => { return state; } //请求失败后执行的方法
     };
-
     /**
      * 覆盖默认设置
      */
@@ -47,10 +46,10 @@ const Main = (mySeting) => {
              * @param {Object} props
              */
             this.initState = (props) => {
-                var {state, location} = props;
-                var {pathname, search} = location;
+                let {state, location} = props;
+                let {pathname, search} = location;
                 this.path = pathname + search;
-               
+                
                 if (typeof state.path[this.path] === 'object' && state.path[this.path].path === this.path) {
                     this.state = state.path[this.path];
                 } else {
@@ -64,26 +63,48 @@ const Main = (mySeting) => {
              * DOM初始化完成后执行回调
              */
             this.redayDOM = () => {
-                var {success, error} = this.props.seting;
-                var {scrollX, scrollY} = this.state;
-                if (this.get) return false; //已经加载过
-                window.scrollTo(scrollX, scrollY); //设置滚动条位置
-                if (this.testStop()) return false; //请求被拦截
+                let {success, error} = this.props.seting;
+                let {scrollX, scrollY} = this.state;
+                if (seting.type == 'GET') {
+                    if (this.get) return false; //已经加载过
+                    window.scrollTo(scrollX, scrollY); //设置滚动条位置
+                    if (this.testStop()) return false; //请求被拦截
 
-                this.get = Tool.get(this.getUrl(), this.getData(), (res) => {
-                    this.state.loadMsg = '加载成功';
-                    this.state.loadAnimation = false;
-                    this.state.data = res.data;
-                    this.props.setState(success(this.state) || this.state);
-                }, (res, xhr) => {
-                    if (xhr.status == 404) {
-                        this.state.loadMsg = '话题不存在';
-                    } else {
-                        this.state.loadMsg = '加载失败';
-                    }
-                    this.state.loadAnimation = false;
-                    this.props.setState(error(this.state) || this.state);
-                });
+                    this.get = Tool.get(this.getUrl(), this.getData(), (res) => {
+                        this.state.loadMsg = '加载成功';
+                        this.state.loadAnimation = false;
+                        this.state.data = res
+                        this.props.setState(success(this.state) || this.state);
+                    }, (res, xhr) => {
+                        if (res) {
+                            console.log(res)
+                  
+                        } else {
+                            this.state.loadMsg = '加载失败';
+                        }
+                        this.state.loadAnimation = false;
+                        this.props.setState(error(this.state) || this.state);
+                    });
+                }else if(seting.type == 'POST'){
+                    if (this.post) return false; //已经加载过
+                    window.scrollTo(scrollX, scrollY); //设置滚动条位置
+                    if (this.testStop()) return false; //请求被拦截
+                    this.post = Tool.post(this.getUrl(), this.getData(), (res) => {
+                        this.state.loadMsg = '加载成功';
+                        this.state.loadAnimation = false;
+                        this.state.data = res
+                        this.props.setState(success(this.state) || this.state);
+                    }, (res, xhr) => {
+                        if (res) {
+                            console.log(res)
+                           
+                        } else {
+                            this.state.loadMsg = '加载失败';
+                        }
+                        this.state.loadAnimation = false;
+                        this.props.setState(error(this.state) || this.state);
+                    });
+                }
             }
 
             /**
@@ -93,6 +114,10 @@ const Main = (mySeting) => {
                 if (typeof this.get != 'undefined') {
                     this.get.end();
                     delete this.get;
+                }
+                if (typeof this.post != 'undefined') {
+                    this.post.end();
+                    delete this.post;
                 }
                 this.state.scrollX = window.scrollX; //记录滚动条位置
                 this.state.scrollY = window.scrollY;
@@ -105,7 +130,7 @@ const Main = (mySeting) => {
              * @returns Object
              */
             this.getUrl = () => {
-                var {url} = this.props.seting;
+                let {url} = this.props.seting;
                 if (typeof url === 'function') {
                     return url(this.props, this.state);
                 } else if (url && typeof url === 'string') {
@@ -121,7 +146,7 @@ const Main = (mySeting) => {
              * @returns
              */
             this.getData = () => {
-                var {data} = this.props.seting;
+                let {data} = this.props.seting;
                 if (typeof data === 'function') {
                     return data(this.props, this.state);
                 } else if (data && typeof data === 'string') {
@@ -137,7 +162,7 @@ const Main = (mySeting) => {
              * @returns
              */
             this.testStop = () => {
-                var {stop} = this.props.seting;
+                let {stop} = this.props.seting;
                 if (typeof stop === 'function') {
                     return stop(this.props, this.state);
                 }
@@ -160,9 +185,9 @@ const Main = (mySeting) => {
          * 在组件接收到新的 props 的时候调用。在初始化渲染的时候，该方法不会调用
          */
         componentWillReceiveProps(np) {
-            var {location} = np;
-            var {pathname, search} = location;
-            var path = pathname + search;
+            let {location} = np;
+            let {pathname, search} = location;
+            let path = pathname + search;
             if (this.path !== path) {
                 this.unmount(); //地址栏已经发生改变，做一些卸载前的处理
             }

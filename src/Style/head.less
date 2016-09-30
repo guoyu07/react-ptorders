@@ -97,6 +97,14 @@
 		background-size: 100% 0.925rem;
 		background-position: center;
 	}
+	.searchtext{
+		float: right;
+		margin-right: 0.75rem;
+		height: 2.2rem;
+		font-size: 0.7rem;
+		color: #fff;
+		line-height: 2.2rem;
+	}
 	.head_title{
 		font-size: 0.85rem;
 		width: 5.0rem;
@@ -106,5 +114,43 @@
 		left: 50%;
 		margin-left: -2.5rem;
 		color: #fff;
+	}
+}
+.searchForm{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -0.675rem;
+	margin-left: -4.875rem;
+	width: 9.75rem;
+	height: 1.35rem;
+	.searchInput{
+		height: 100%;		
+		width:100%;
+		border-radius: 1rem;
+		text-indent: 1rem;
+		font-size: 0.6rem;
+	}
+}
+.alertContainer{
+	position: fixed;
+	z-index: 9999999;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	.content{
+		position: absolute;
+		width: 80%;
+		padding: 0.75rem 1.1rem;
+		left: 50%;
+		top: 50%;
+		background-color: #fff;
+		opacity: 0.8;
+		transition: translate(-50% -50%);
+		color: #fff;
+		font-size: 0.7rem;
+		text-align:center;
+		line-height: 1.25rem;
 	}
 }

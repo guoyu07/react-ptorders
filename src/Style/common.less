@@ -6,10 +6,12 @@ body, ul, li, a, p, h1, h2, h3, h4, i, b, textarea, button, input, select {
     font-style: normal;
     text-decoration: none;
     border: none;
+    font-family: 'Microsoft YaHei';
     &:focus {
         outline: none;
     }
 }
+
 body{
     background:#ebebeb;
 }
@@ -23,18 +25,59 @@ img {
     display: block;
     clear: both;
 }
+
 .clear{
     zoom:1;
 }
+
 .left{
     float: left;
 }
+
 .right{
     float: right;
 }
+
 .show{
     display: block;
 }
+
 .hide{
     display: none;
+}
+
+.index_list_box{
+    margin-bottom: 3rem;
+}
+
+.ellips{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#alertTip{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    display: none;
+}
+#alertText{
+    width: 12.5rem;
+    min-height: 1.5rem;
+    position: absolute;
+    left: 50%;
+    top: 8.5rem;
+    margin-left: -6.25rem;
+    padding: 1rem 0.25rem 0.6rem;
+    line-height: 1rem;
+    font-size: 0.7rem;
+    text-align: center;
+    background-color: #000;
+    opacity: 0.8;
+    color: #fff;
+    border-radius: 0.3rem;
 }

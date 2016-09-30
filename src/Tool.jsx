@@ -27,7 +27,7 @@ Tool.ajax = function (mySetting) {
         setting[attr] = mySetting[attr];
     }
     for (var attr in setting.data) {
-        aData.push(attr + '=' + filter(setting.data[attr]));
+        aData.push(attr + '=' + setting.data[attr]);
     }
     sData = aData.join('&');
     setting.type = setting.type.toUpperCase();
@@ -36,7 +36,7 @@ Tool.ajax = function (mySetting) {
     try {
         if (setting.type == 'GET') { //get方式请求
             sData = setting.url + '?' + sData;
-            xhr.open(setting.type, sData + '&' + new Date().getTime(), setting.async);
+            xhr.open(setting.type, sData, setting.async);
             xhr.send();
         } else { //post方式请求
             xhr.open(setting.type, setting.url, setting.async);
@@ -74,18 +74,6 @@ Tool.ajax = function (mySetting) {
         xhr.removeEventListener('readystatechange', httpEnd, false);
     }
 
-    function filter(str) { //特殊字符转义
-        str += ''; //隐式转换
-        str = str.replace(/%/g, '%25');
-        str = str.replace(/\+/g, '%2B');
-        str = str.replace(/ /g, '%20');
-        str = str.replace(/\//g, '%2F');
-        str = str.replace(/\?/g, '%3F');
-        str = str.replace(/&/g, '%26');
-        str = str.replace(/\=/g, '%3D');
-        str = str.replace(/#/g, '%23');
-        return str;
-    }
     return xhr;
 };
 /**
@@ -96,12 +84,23 @@ Tool.ajax = function (mySetting) {
  * @param {function} error    请求失败执行方法
  */
 Tool.post = function (pathname, data, success, error) {
+    data['uid'] = 6011342;
+    data['token'] = 'pt';
     var setting = {
         url: target + pathname, //默认ajax请求地址
         type: 'POST', //请求的方式
         data: data, //发给服务器的数据
-        success: success || function () { }, //请求成功执行方法
-        error: error || function () { } //请求失败执行方法
+        success: function (res) {
+            if (res.http_code == 40011) {
+                window.location.href = target + '/common/wx/authorize';
+            }else if (res.http_code == 40015) {
+                window.location.href = target + '/common/wx/putaoAuthorize';
+            }
+            success(res)
+        }, //请求成功执行方法
+        error: function (res) {
+            error(res)
+        } //请求失败执行方法
     };
     return Tool.ajax(setting);
 };
@@ -113,68 +112,106 @@ Tool.post = function (pathname, data, success, error) {
  * @param {function} error    请求失败执行方法
  */
 Tool.get = function (pathname, data, success, error) {
+    data['uid'] = 6011342;
+    data['token'] = 'pt';
     var setting = {
         url: target + pathname, //默认ajax请求地址
         type: 'GET', //请求的方式
         data: data, //发给服务器的数据
-        success: success || function () { }, //请求成功执行方法
-        error: error || function () { } //请求失败执行方法
+        success: function (res) {
+            if (res.http_code == 40011) {
+                window.location.href = target + '/common/wx/authorize';
+            }else if (res.http_code == 40015) {
+                window.location.href = target + '/common/wx/putaoAuthorize';
+            }
+            success(res)
+        }, //请求成功执行方法
+        error: function (res) {
+
+            error(res)
+        } //请求失败执行方法
     };
     return Tool.ajax(setting);
 };
 
-/**
- * 格式化时间
- * 
- * @param {any} t
- * @returns
- */
-Tool.formatDate = function (str) {
-    var date = new Date(str);
-    var time = new Date().getTime() - date.getTime(); //现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）
-    if (time < 0) {
-        return '';
-    } else if (time / 1000 < 60) {
-        return '刚刚';
-    } else if ((time / 60000) < 60) {
-        return parseInt((time / 60000)) + '分钟前';
-    } else if ((time / 3600000) < 24) {
-        return parseInt(time / 3600000) + '小时前';
-    } else if ((time / 86400000) < 31) {
-        return parseInt(time / 86400000) + '天前';
-    } else if ((time / 2592000000) < 12) {
-        return parseInt(time / 2592000000) + '月前';
-    } else {
-        return parseInt(time / 31536000000) + '年前';
+var alertText = document.createElement('div');
+alertText.setAttribute('id','alertText');
+
+
+var alertDom = document.createElement('div');
+alertDom.setAttribute('id','alertTip');
+alertDom.appendChild(alertText);
+
+document.body.appendChild(alertDom);
+var timer = null;
+Tool.alert = function (msg){
+    clearTimeout(timer);
+    alertText.innerHTML = msg;
+    alertDom.style.display = 'block';
+    alertText.onclick = function (){
+        clearTimeout(timer);
+        alertDom.style.display = 'none';
     }
+    timer = setTimeout(function (){
+       alertDom.style.display = 'none';
+       clearTimeout(timer);
+    },1500)
 }
 
-/**
- * 本地数据存储或读取
- * 
- * @param {any} key
- * @param {any} value
- * @returns
- */
-Tool.localItem = function (key, value) {
-    if (arguments.length == 1) {
-        return localStorage.getItem(key);
-    } else {
-        return localStorage.setItem(key, value);
+Tool.getStyle = function (obj,attr){ 
+    if(obj.currentStyle){ 
+        return obj.currentStyle[attr]; 
+    } 
+    else{ 
+        return document.defaultView.getComputedStyle(obj,null)[attr]; 
+    } 
+} 
+
+
+Tool.nextPage = function(dom,currentPage,totalPage,callback,shouldUpdata){ //分页
+    var updata = shouldUpdata;
+    var page = currentPage;
+    var height = 0;
+    var windowHeight = window.screen.height;
+    var setTop = 0;
+    var Bottom = 0;
+    var oldScrollTop = 0;
+    var timer = null;
+    dom.addEventListener('touchstart',function(){
+        height = dom.offsetHeight;
+        setTop = dom.offsetTop;
+        Bottom = parseInt(Tool.getStyle(dom,'marginBottom'));
+    },false)
+    dom.addEventListener('touchmove',function(){
+       loadMore();
+    },false)
+    dom.addEventListener('touchend',function(){
+       oldScrollTop = document.body.scrollTop
+        moveEnd()
+    },false)
+
+    var moveEnd = () => {
+        requestAnimationFrame(function(){
+            if (document.body.scrollTop != oldScrollTop) {
+                oldScrollTop = document.body.scrollTop;
+                moveEnd()
+            }else{
+                loadMore();
+            }
+        })
     }
+
+    var loadMore = () => {
+        if ((page < totalPage)&&(updata==true)) {
+            if (document.body.scrollTop+windowHeight >= height+setTop+Bottom) {
+                page++;
+                updata = false;
+                callback(page);
+            }
+        }
+    }
+
 }
 
-/**
- * 删除本地数据
- * 
- * @param {any} key
- * @returns
- */
-Tool.removeLocalItem = function (key) {
-    if (key) {
-        return localStorage.removeItem(key);
-    }
-    return localStorage.removeItem();
-}
 
 export {Tool, merged, config}

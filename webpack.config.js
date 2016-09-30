@@ -13,8 +13,8 @@ if (process.argv.indexOf('-p') > -1) { //生产环境
             NODE_ENV: JSON.stringify('production')
         }
     }));
-    publicPath = '/POrders/dist/';
-    path = __dirname + '/POrders/dist/';
+    publicPath = '/ptorders/dist/';
+    path = __dirname + '/ptorders/dist/';
 }
 plugins.push(new ExtractTextPlugin('[name].css')); //css单独打包
 

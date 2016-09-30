@@ -1,8 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 
-import Signin from '../Component/Signin'; //登录
-import accreditPage from '../Component/accreditPage'; //授权页面
 import IndexList from '../Component/IndexList'; //首页组件
 import shoppingCart from '../Component/shoppingCart'; //购物车
 import confirmOrders from '../Component/confirmOrders'; //确认订单
@@ -34,19 +32,18 @@ const RouteConfig = (
     <Router history={history}>
         <Route path="/" component={Roots}>
             <IndexRoute component={IndexList} />//首页
-            <Route path="signin/accredit" component={accreditPage} />//授权页面
             <Route path="index" component={IndexList} />//首页组件
             <Route path="shoppingcart" component={shoppingCart} />//购物车
             <Route path="confirmorders" component={confirmOrders} />//确认订单
-            <Route path="confirmorders/success" component={confirmOrdersSuccess} />//订单提交成功
+            <Route path="confirmorderssuccess" component={confirmOrdersSuccess} />//订单提交成功
             <Route path="productrule" component={productRule} />//商品政策
             <Route path="myteam" component={myTeam} />//个人团队
-            <Route path="myteam/edit" component={myTeamEdit} />//编辑团队
-            <Route path="my/messages" component={MyMessages} />//个人信息
-            <Route path="my/address" component={MyAddress} />//收货地址
-            <Route path="my/newaddress" component={MyNewAddress} />//新增地址
-            <Route path="my/orders" component={MyOrders} /> //订单页
-            <Route path="my/orders/details" component={MyOrdersDetails} />//订单详情页
+            <Route path="myteamedit" component={myTeamEdit} />//编辑团队
+            <Route path="mymessages" component={MyMessages} />//个人信息
+            <Route path="myaddress" component={MyAddress} />//收货地址
+            <Route path="mynewaddress" component={MyNewAddress} />//新增地址
+            <Route path="myorders" component={MyOrders} /> //订单页
+            <Route path="myordersdetails" component={MyOrdersDetails} />//订单详情页
         </Route>
     </Router>
 );

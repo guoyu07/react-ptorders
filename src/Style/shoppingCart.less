@@ -1,10 +1,14 @@
 
+.shoppingcart_container{
+	margin-bottom:2.7rem;
+}
 .shoppingcart_head{
 	position: fixed;
 	height: 2.2rem;
 	width: 100%;
 	top: 0;
 	left: 0;
+	z-index: 9999;
 	background-color: #fff;
 	.go_back_index{
 		font-size: 0.7rem;
@@ -26,7 +30,7 @@
 		color: #494949;
 		line-height: 2.2rem;
 		text-align: center;
-		width: 4.0rem;
+		width: 5.0rem;
 		position: absolute;
 		top: 0;
 		left: 50%;
@@ -61,11 +65,13 @@
 
 .shoppingcart_item{
 	border-bottom: 1px solid #ebebeb;
+	position: relative;
+	min-height: 4.0rem;
 	.item_left{
 		position: absolute;
 		left: 0;
 		font-size: 0;
-		margin: 0.5rem 0 0.5rem 0;
+		top: 0.5rem;
 		span{
 			display: inline-block;
 		}
@@ -79,27 +85,35 @@
 				display: block;
 				height: 100%;
 				width: 100%;
+				border-radius: 50%;
 				background:url(../images/icon_sel@3x.png) no-repeat;
+				background-size: 100% 100%;
+			}
+			.back_disable{
+				display: block;
+				height: 100%;
+				width: 100%;
+				border-radius: 50%;
+				background:url(../images/icon_nor@3x.png) no-repeat;
 				background-size: 100% 100%;
 			}
 		}
 		.item_left_img{
-			width: 3.0rem;
-			height: 3.0rem;
+			width: 3rem;
+			height: 3rem;
 			border: 1px solid #e1e1e1;
 			border-radius: 0.1rem;
 			vertical-align: middle;
-			background: url(../images/tu.png) no-repeat;
-			background-size: 100% 100% ;
 		}
 	}
 	.item_right{
 		margin-left: 6.35rem ;
+		padding: 0.5rem 0 0.5rem 0;
 		p:nth-of-type(1){
 			font-size: 0.7rem;
+			line-height: 0.7rem;
 			color: #333;
 			padding-bottom: 0.5rem;
-			padding-top: 0.5rem;
 			.delete_prodcut{
 				width: 0.65rem;
 				height: 0.65rem;
@@ -110,20 +124,49 @@
 		}
 		p:nth-of-type(2){
 			font-size: 0.6rem;
+			line-height: 0.6rem;
 			color: #999;
-			margin-bottom: 0.75rem;			
+			margin-bottom: 0.58rem;	
+			width: 90%;		
 		}
 		p:nth-of-type(3){
 			font-size: 0.7rem;
+			line-height: 0.7rem;
 			color: #333;
-			margin-bottom: 0.5rem;
 			i{
 				font-size: 0.6rem;
+				line-height: 0.6rem;
 			}
 			.item_number{
 				margin-right:0.75rem;
 			}			
 		}
+		.reduce_add{
+			padding-top: 0.375rem;
+			input{
+				width: 4.75rem;
+				font-size: 0.8rem;
+				line-height: 0.8rem;
+			}
+		}
+		.product_bottom{
+			padding-top: 0.7rem;
+			margin-bottom:0.1rem;
+			.product_discribe{
+				font-size: 0.6rem;
+				line-height: 0.6rem;
+				color: #999;
+				width: 80%;
+			}
+			.selectType{
+				margin-right: 0.5rem;
+				width: 0.85rem;
+				height: 0.5rem;
+				background: url(../images/icon_edit@3x.png) no-repeat;
+				background-size: 100% 100% ;
+			}
+		}
+		
 	}
 }
 .shoppingcart_footer{
@@ -145,38 +188,94 @@
 	}
 	.footer_allMoney{
 		text-align: right;
-		margin-right:0.5rem;
-		p:nth-of-type(1){
+		position: absolute;
+		right:6rem;
+		top:0.5rem;
+		line-height: 0.7rem;
+		.total_price{
 			font-size: 0.6rem;
 			color: #333;
-			margin-top: 0.5rem;
 			i{
-				font-size: 0.5rem;
 				color: #f20505;
+				font-size: 0.7rem;
 			}
 			span{
+				font-size: 0.7rem;
 				color: #f20505;
 			}
 		}
-		p:nth-of-type(2){
+		.deliver_type{
 			font-size: 0.6rem;
 			color: #333;
-			margin-top: 0.3rem;
+			padding-top: 0.3rem;
 		}
 	}
 	.footer_chooseAll{
 		line-height: 2.45rem;
 		font-size: 0.6rem;
 		color: #333;
-		margin-right:1.15rem;
+		margin-left:0.75rem;
 		.choose_all{
 			display: inline-block;
 			width: 1.05rem;
 			height: 1.05rem;
 			vertical-align: middle;
+			border-radius: 50%;
 			background:url(../images/icon_sel@3x.png) no-repeat;
 			background-size: 100% 100%;
 			margin-right: 0.75rem;
 		}
+		.notchoose_all{
+			display: inline-block;
+			width: 1.05rem;
+			height: 1.05rem;
+			vertical-align: middle;
+			border-radius: 50%;
+			background:url(../images/icon_nor@3x.png) no-repeat;
+			background-size: 100% 100%;
+			margin-right: 0.75rem;
+
+		}
+	}
+}
+
+.replaceButton{
+	margin-bottom: 3.25rem;
+}
+.forSure{
+	height: 2.45rem;
+	font-size: 0.75rem;
+	color: #fff;
+	background-color: #985ec9;
+	text-align: center;
+	line-height: 2.45rem;
+}
+.empty_container{
+	text-align: center;
+	margin-top: 7rem;
+	.empty_backImg{
+		height: 5.35rem;
+		width: 6.75rem;
+		background: url(../images/img_tip@3x.png) no-repeat;
+		background-size: 100% 100%;
+		margin:0 auto;
+	}
+	.empty_text{
+		font-size: 0.7rem;
+		color: #999;
+		margin-top:0.65rem;
+		text-align: center;
+	}
+	.empty_button{
+		display: inline-block;
+		width: 8.925rem;
+		height: 1.8rem;
+		background-color: #985ec9;
+		color: #fff;
+		font-size: 0.75rem;
+		line-height: 1.8rem;
+		text-align: center;
+		margin-top:2.1rem;
+		border-radius: 0.25rem;
 	}
 }

@@ -1,19 +1,15 @@
 .index_list_container{
 	padding: 2.45rem 0.5rem 0.675rem 0.5rem;
-	background-color: #f1f1f1;
 	.list_item{
 		background-color: #fff;
 		border-radius: 4px;
 		margin-top: 0.25rem;
 		.item_img{
 			margin: 0.25rem 0.75rem 0 0.25rem;
-			width: 6.5rem;
-			height: 6.5rem;
-			background: url(../images/tu.png) no-repeat;
-			background-size: 100% 100%;
 			img{
 				width: 6.5rem;
 				height: 6.5rem;
+				display: block;
 			}
 		}
 		.item_details{
@@ -137,17 +133,21 @@
 				width: 5.0rem;
 				height: 5.0rem;
 				margin:0.625rem 0.75rem 0.625rem 0;
-				background: url(../images/tu.png) no-repeat;
-				background-size: 100% 100%;
-			}
+				img{
+					width: 5.0rem;
+					height: 5.0rem;
+					display:block;
+				}
+			}	
 			.item_header_right{
-				margin-top: 0.75rem;
+				margin-top: 0.5rem;
 				.item_header_close{
 					position: absolute;
 					right: 0.75rem;
 					top: 0.75rem;
 					width: 1.15rem;
 					height: 1.15rem;
+					border-radius: 50%;
 					background: url(../images/icon_close@3x.png) no-repeat;
 					background-size: 100% 100%;
 				}
@@ -155,7 +155,7 @@
 					font-size: 0.9rem;
 					color: #333;
 					margin-top: 1.25rem;
-					margin-bottom: 0.625rem;
+					margin-bottom: 0.6rem;
 				}
 				.item_header_price{
 					font-size: 0.7rem;
@@ -179,6 +179,7 @@
 				width: 12.9rem;
 				padding-top: 1.0rem;
 				margin-left: 1.55em;
+				min-height: 1.5rem;
 				li{
 					float: left;
 					height: 1.5rem;
@@ -205,6 +206,7 @@
 			}
 			.edit_number{
 				font-size: 0;
+				margin-top: 0.5rem;
 				margin-bottom:1.5rem;
 				.order_numbers{
 					font-size: 0.65rem;
@@ -214,29 +216,7 @@
 					vertical-align: top;
 					margin-right: 1.0rem;
 				}
-				.reduce_add{
-					.edit_style{
-						width: 1.15rem;
-						height: 1.15rem;
-						display: inline-block;
-					}
-					.reduce{
-						background: url(../images/icon_reduce@3x.png) no-repeat;
-						background-size: 100% 100%;
-					}
-					.add{
-						background: url(../images/icon_add@3x.png) no-repeat;
-						background-size: 100% 100%;
-					}
-					input{
-						width: 3.6rem;
-						height: 1.15rem;
-						line-height: 1.15rem;
-						text-align:center;
-						vertical-align: top;
-						font-size: 0.65rem;
-					}
-				}
+				
 			}
 		}
 		.pay_button{
@@ -256,6 +236,7 @@
 				font-size: 0.8rem;
 				color: #f20505;
 				margin-right:0.625rem;
+				max-width: 6rem;
 			}
 			.all_text{
 				font-size: 0.65rem;
@@ -267,5 +248,29 @@
 			width: 100%;
 			margin-top: 3.25rem;		
 		}
+	}
+}
+.reduce_add{
+	.edit_style{
+		width: 1.15rem;
+		height: 1.15rem;
+		display: inline-block;
+		border-radius: 50%;
+	}
+	.reduce{
+		background: url(../images/icon_reduce@3x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.add{
+		background: url(../images/icon_add@3x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	input{
+		width: 3.6rem;
+		height: 1.15rem;
+		line-height: 1.15rem;
+		text-align:center;
+		vertical-align: top;
+		font-size: 0.8rem;
 	}
 }
