@@ -4,9 +4,9 @@
 
 ### 下载
 
-  git clone http://code.putao.io/web/weixin_orders.git
+  git clone https://github.com/bailicangdu/ptorders.git
 
-  cd weixin_orders
+  cd ptorders
 
   npm install 
 
