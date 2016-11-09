@@ -1,5 +1,5 @@
 # react-cnode
-基于webpack + react + react-router + redux + less + ES6 
+基于webpack + react + react-router + redux + less + ES6 + 调用微信支付接口
 
 
 ### 下载
