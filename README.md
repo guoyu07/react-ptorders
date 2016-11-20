@@ -10,8 +10,6 @@
 
   npm install 
 
-  npm install webpack -g 
-
 
 ### 运行（nodejs 6.0+）
 
