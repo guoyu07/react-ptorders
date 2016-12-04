@@ -1,4 +1,4 @@
-# react-cnode
+# ptorders
 基于webpack + react + react-router + redux + less + ES6 + 调用微信支付接口
 
 
