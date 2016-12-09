@@ -4,7 +4,7 @@
 
 ### 下载
 
-  git clone https://github.com/bailicangdu/ptorders.git
+  git clone https://github.com/bailicangdu/react-ptorders
 
   cd ptorders
 
