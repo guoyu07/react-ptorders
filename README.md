@@ -6,7 +6,7 @@
 
   git clone https://github.com/bailicangdu/react-ptorders
 
-  cd ptorders
+  cd react-ptorders
 
   npm install 
 
